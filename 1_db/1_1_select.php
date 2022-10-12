@@ -8,7 +8,8 @@
     <h3>Użytkownicy z tabeli</h3>
     <?php
       require_once("./scripts/1_connect.php");
-      $sql = "SELECT * FROM `users`;";
+      // $sql = "SELECT * FROM `users`;";
+      $sql = "SELECT * FROM `users` INNER JOIN `cities` ON `users`.`city_id`=`cities`.`id`;";
       $result = $conn->query($sql);
       $count = 0;
       while ($user = $result->fetch_assoc()) {
@@ -17,7 +18,7 @@
         echo <<< E
         Użytkownik $count:<br>
         Imię i nazwisko: $user[name] $user[surname]<br>
-        Miasto: $user[city_id]<br>
+        Miasto: $user[city]<br>
         Data utworzenia: $user[created_at]
         <hr>
         E;
