@@ -13,6 +13,6 @@
             $_SESSION['info'] = "Nie usunięto rekordu o id=$_GET[userid]";
         }
 
-        header('location: ../3_tabela_delete.php');
+        header('location: ../4_tabela_insert.php');
     }
 ?>

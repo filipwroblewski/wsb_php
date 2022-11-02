@@ -38,11 +38,26 @@
             <td>$user[created_at]</td>
             <td><a href="./scripts/delete_user.php?userid=$user[id]">Usuń</a></td>
           </tr>
-
           E;
         }
+
+        echo "</table>";
+          if (isset($_GET['adduser'])){
+            echo "<h4>Dodawanie nowego użytkownika</h4>";
+            echo <<< ADDUSER
+            <form action="./scripts/add_user.php" method="post">
+              <input type="text" name="city_id" value="10">
+              <input type="text" name="name" placeholder="Podaj imie" value="Test">
+              <input type="text" name="surname" placeholder="Podaj nazwisko" value="Testing">
+              <input type="submit" value="Dodaj użytkownika">
+            </form>
+            ADDUSER;
+          }else{
+            echo '<a href="./4_tabela_insert.php?adduser=1">Dodawanie nowego użytkownika</a>';
+          }
       ?>
-    </table>
+
+      
 
   </body>
 </html>
