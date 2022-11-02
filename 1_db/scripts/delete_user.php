@@ -12,7 +12,6 @@
             // echo "error! $conn->affected_rows";
             $_SESSION['info'] = "Nie usunięto rekordu o id=$_GET[userid]";
         }
-
-        header('location: ../4_tabela_insert.php');
     }
+    header('location: ../4_tabela_insert.php');
 ?>
