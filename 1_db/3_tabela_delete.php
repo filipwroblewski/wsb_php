@@ -1,3 +1,7 @@
+<?php 
+  session_start() 
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -7,6 +11,13 @@
   </head>
   <body>
     <h3>Użytkownicy z tabeli</h3>
+    <!-- komunikaty -->
+    <?php
+      if (isset($_SESSION['info'])){
+        echo $_SESSION['info'];
+        unset($_SESSION['info']);
+      }
+    ?>
     <table>
       <tr>
         <th>Imię i nazwisko</th>
