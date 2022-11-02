@@ -27,7 +27,7 @@
       
       <?php
         require_once("./scripts/1_connect.php");
-        $sql = "SELECT `users`.`id`, `users`.`name`, `users`.`surname`, `users`.`created_at`, `cities`.`city` FROM `users` INNER JOIN `cities` ON `users`.`city_id`=`cities`.`id`;";
+        $sql = "SELECT `users`.`id`, `users`.`name`, `users`.`surname`, `users`.`created_at`, `cities`.`city` FROM `users` INNER JOIN `cities` ON `users`.`city_id`=`cities`.`id` ORDER BY id DESC;";
         $result = $conn->query($sql);
         while ($user = $result->fetch_assoc()) {
           // echo $user['name'];
@@ -46,18 +46,25 @@
             echo "<h4>Dodawanie nowego użytkownika</h4>";
             echo <<< ADDUSER
             <form action="./scripts/add_user.php" method="post">
-              <input type="text" name="city_id" value="10">
-              <input type="text" name="name" placeholder="Podaj imie" value="Test">
-              <input type="text" name="surname" placeholder="Podaj nazwisko" value="Testing">
+            <select name="city_id">
+              ADDUSER;
+              $sql="SELECT * FROM `cities`";
+              $result=$conn->query($sql);
+              while ($city=$result->fetch_assoc()){
+                echo "<option value=\"$city[id]\">$city[city]</option>";
+              }
+            echo <<< ADDUSER
+              </select><br><br>
+              <input type="text" name="name" placeholder="Podaj imie" value="Test"><br><br>
+              <input type="text" name="surname" placeholder="Podaj nazwisko" value="Testing"><br><br>
               <input type="submit" value="Dodaj użytkownika">
             </form>
             ADDUSER;
+            
           }else{
             echo '<a href="./4_tabela_insert.php?adduser=1">Dodawanie nowego użytkownika</a>';
           }
       ?>
-
-      
 
   </body>
 </html>
