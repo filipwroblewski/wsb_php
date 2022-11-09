@@ -73,7 +73,32 @@
             $sql="SELECT * FROM `users` WHERE `id`=$_GET[updateuserid]";
             $result = $conn->query($sql);
             $user = $result->fetch_assoc();
-            echo "$user[name]";
+            // echo "$user[city_id]";
+
+            echo <<< UPDATEUSER
+            <form action="./scripts/add_user.php" method="post">
+            <select name="city_id">
+            UPDATEUSER;
+            
+            // $sql="SELECT * FROM `cities` WHERE `id`=$user[city_id]";
+            $sql="SELECT * FROM `cities`";
+            $result=$conn->query($sql);
+            while ($city=$result->fetch_assoc()){
+              if ($city['id'] == $user['city_id']){
+                echo "<option value=\"$city[id]\" selected>$city[city]</option>";
+              }else{
+                echo "<option value=\"$city[id]\">$city[city]</option>";
+              }
+              
+            }
+            
+            echo <<< UPDATEUSER
+              </select><br><br>
+              <input type="text" name="name" placeholder="Podaj imie" value="$user[name]"><br><br>
+              <input type="text" name="surname" placeholder="Podaj nazwisko" value="$user[surname]"><br><br>
+              <input type="submit" value="Dodaj użytkownika">
+            </form>
+            UPDATEUSER;
           }
       ?>
 
