@@ -70,6 +70,10 @@
 
           if (!empty($_GET['updateuserid'])){
             echo "<h4>Aktualizacja użytkownika o id=$_GET[updateuserid]</h4>";
+            $sql="SELECT * FROM `users` WHERE `id`=$_GET[updateuserid]";
+            $result = $conn->query($sql);
+            $user = $result->fetch_assoc();
+            echo "$user[name]";
           }
       ?>
 
