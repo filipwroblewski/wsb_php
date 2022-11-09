@@ -37,6 +37,7 @@
             <td>$user[city]</td>
             <td>$user[created_at]</td>
             <td><a href="./scripts/delete_user.php?userid=$user[id]">Usuń</a></td>
+            <td><a href="./5_tabela_update_insert.php?updateuserid=$user[id]">Aktualizuj</a></td>
           </tr>
           E;
         }
@@ -65,6 +66,10 @@
             
           }else{
             echo '<a href="./4_tabela_insert.php?adduser=1">Dodawanie nowego użytkownika</a>';
+          }
+
+          if (!empty($_GET['updateuserid'])){
+            echo "<h4>Aktualizacja użytkownika o id=$_GET[updateuserid]</h4>";
           }
       ?>
 
