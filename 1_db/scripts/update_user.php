@@ -9,8 +9,7 @@
         }
         require_once './1_connect.php';
         echo $_SESSION['updateuserid'];
-        // $sql = "UPDATE `users` SET `city_id` = '$_POST[city_id]', `name` = '$_POST[name]', `surname` = '$_POST[surname]' WHERE `users`.`id` = '$_SESSION[updateuserid]';";
-        $sql = "UPDATE `users` SET `city_id` = '$_POST[city_id]', `name` = '$_POST[name]', `surname` = '$_POST[surname]' WHERE `users`.`id` = $_SESSION[updateuserid];"; // cos nie tak z 20 -> $_SESSION[updateuserid]
+        $sql = "UPDATE `users` SET `city_id` = '$_POST[city_id]', `name` = '$_POST[name]', `surname` = '$_POST[surname]' WHERE `users`.`id` = $_SESSION[updateuserid];";
         $conn->query($sql);
         if ($conn->affected_rows){
             $_SESSION['info'] = "Prawidłowo zaktualizowano rekord";
