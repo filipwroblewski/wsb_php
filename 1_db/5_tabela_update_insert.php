@@ -76,7 +76,7 @@
             // echo "$user[city_id]";
 
             echo <<< UPDATEUSER
-            <form action="./scripts/add_user.php" method="post">
+            <form action="./scripts/update_user.php" method="post">
             <select name="city_id">
             UPDATEUSER;
             
@@ -96,9 +96,11 @@
               </select><br><br>
               <input type="text" name="name" placeholder="Podaj imie" value="$user[name]"><br><br>
               <input type="text" name="surname" placeholder="Podaj nazwisko" value="$user[surname]"><br><br>
-              <input type="submit" value="Dodaj użytkownika">
+              <input type="submit" value="Aktualizuj użytkownika">
             </form>
             UPDATEUSER;
+
+            $_SESSION['updateuserid'] = $user['id'];
           }
       ?>
 
