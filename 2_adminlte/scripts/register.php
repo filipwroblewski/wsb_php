@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     $error = 0;
     foreach ($_POST as $key => $value){
         if (empty($value)){
@@ -21,7 +23,31 @@
 
     
     //https://www.php.net/manual/en/mysqli.quickstart.prepared-statements.php
-    $stmt = $mysqli->prepare("INSERT INTO users(city_id, name, surname, email, pass, birthday) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("isssss", $_POST['city_id'], $_POST['name'], $_POST['surname'], $_POST['email1'], $_POST['pass1'], $_POST['birthday']); // isssss -> inteager, string, string, string, string, string, string
-    $stmt->execute();
+    try{
+        $stmt = $mysqli->prepare("INSERT INTO users(city_id, name, surname, email, pass, birthday) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("isssss", $_POST['city_id'], $_POST['name'], $_POST['surname'], $_POST['email1'], $_POST['pass1'], $_POST['birthday']); // isssss -> inteager, string, string, string, string, string, string
+        $stmt->execute();
+
+        if ($stmt->affected_rows == 1){
+            // echo "ok";
+            $_SESSION['success'] = "Prawidłowo dodano użytkownika $_POST[email1]";
+        }
+    } catch (Exception $e){
+        echo $e->getMessage();
+        if ($stmt->affected_rows != 1){
+            // echo "<br>error";
+            $_SESSION['error'] = "Nie udało się dodać użytkownika $_POST[email1]";
+        }
+    }
+    
+
+
+    
+    // else{
+    //     echo "nie ok";
+    //     $_SESSION['error'] = "Nie udało się dodać użytkownika";
+    //     exit();
+    // }
+
+    header('location: ../');
 ?>
