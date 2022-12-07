@@ -29,20 +29,21 @@
 
         if ($stmt->affected_rows == 1 && password_verify($_POST['pass'], $user['pass'])) {
             $_SESSION['success'] = "Prawidłowo zaloował się użytkownik $_POST[email]";
-            echo $user['name'];
+            // echo $user['name'];
+            header('location: ../view/logged.php');
+            exit();
         }else{
             $_SESSION['error'] = "Nie zalogowano użytkownika użytkownika $_POST[email]";
-            echo "error";
+            // echo "error";
         }
     } catch (Exception $e){
         echo $e->getMessage();
         if ($stmt->affected_rows != 1){
             // echo "<br>error";
             $_SESSION['error'] = "Nie zalogowano użytkownika użytkownika $_POST[email]";
-            echo "error";
+            // echo "error";
         }
     }
     
-    
-    // header('location: ../');
+    header('location: ../');
 ?>
